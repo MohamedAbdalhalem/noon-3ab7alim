@@ -7,7 +7,7 @@ export default function Brands() {
     function getAllBrands(){
         return axios.get('https://ecommerce.routemisr.com/api/v1/brands')
     }
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
         queryKey: ['getAllBrands'],
         queryFn: getAllBrands
     })
