@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@custom-variant dark (&:where(.dark, .dark *));
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body{
+    font-family: "Inter", sans-serif;
+}
+.active{
+    font-weight: bolder;
+    color: rgba(0, 0, 255,0.7);
+}
+
+.slick-prev, .slick-next{
+    display: none !important;
+}  
