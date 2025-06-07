@@ -1,10 +1,11 @@
 import StarRatings from 'react-star-ratings';
 
 import { product } from '../../types';
+import { Link } from 'react-router-dom';
 
 export default function Product(props : product) {
   return (
-    <div className=" bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <Link to={`/product-detial/` + props._id} className=" bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <img className="w-full rounded-t-lg mb-3" src={props.imageCover} alt="product image" />
           <div className="px-4  pb-5">
               <h3 className='text-2xl mb-2 font-bold tracking-tight text-gray-900 dark:text-white'>{ props.title.split(" ").slice(0,2).join(' ') }</h3>
@@ -23,15 +24,11 @@ export default function Product(props : product) {
       </div>
                   
         </div>
-        {props.ratingsAverage ? <div>
-          <span className="text-2xl mr-2 font-bold text-red-700 line-through">{ props.priceAfterDiscount }</span>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">{ props.price }$</span>
-        </div> : 
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">{ '$'+ props.price }$</p>}
+        
         <button className="text-white mt-3 cursor-pointer w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i className='fa-solid fa-plus me-3'></i>Add to cart</button>
         <button className="text-white mt-3 cursor-pointer w-full bg-cyan-800 hover:bg-cyan-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-700 dark:focus:ring-cyan-900"><i className='fa-solid fa-heart me-3'></i>Add to cart</button>
   
       </div>
-          </div>
+          </Link>
   )
 }

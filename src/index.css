@@ -14,3 +14,14 @@ body{
 .slick-prev, .slick-next{
     display: none !important;
 }  
+
+.product-detials .slick-dots{
+    bottom: 5px;
+}
+.slick-dots li button:before{
+    font-size: 10px !important;
+    color: #1D4ED8 !important;
+}
+.product-detials .product-detials-slider{
+    height: 100% !important;
+}

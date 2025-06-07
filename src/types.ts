@@ -52,5 +52,28 @@ export type product = {
 }
 export type catergoryOrbrand ={
     _id: string,    
-    name:string
+    name: string,
+    image:string
+}
+
+export type productDelials = {
+    title:string,
+    description: string,
+    quantity: number,
+    price: number,
+    priceAfterDiscount: number,
+    ratingsAverage: number,
+    sold: number,
+    category: {
+        name: string
+    },
+    brand: {
+        name: string
+    },
+    images: string []
+}
+
+export type userData = {
+    name: string,
+    role: string
 }
