@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { catergoryOrbrand } from '../../types'
-import CategoryOrBrandProduct from '../CategoryProduct/CategoryProduct'
 import ProductsLoudingScreen from '../ProductsLoudingScreen/ProductsLoudingScreen'
 import BrandProduct from '../BrandProduct/BrandProduct'
 
