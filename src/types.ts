@@ -57,6 +57,7 @@ export type catergoryOrbrand ={
 }
 
 export type productDelials = {
+    _id:string,
     title:string,
     description: string,
     quantity: number,
@@ -97,5 +98,11 @@ export type productCart = {
         _id:string
 
     }
+}
 
+export type wishlistContext = {
+    getUserWishCart: () => void,
+    products: product[] | null,
+    addProductToWishlist: (productId : string | undefined) => void,
+    removeProductFromWishlist: (productId : string | undefined) => void,
 }

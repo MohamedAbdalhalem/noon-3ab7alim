@@ -1,15 +1,26 @@
 import StarRatings from 'react-star-ratings';
-
 import { product } from '../../types';
 import { Link } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { WishlistContext } from '../../context/WishlistContext';
+
 
 export default function Product(props: product) {
   const { addProducToCart } = useContext(CartContext)
+  const {products,addProductToWishlist,removeProductFromWishlist} = useContext(WishlistContext)
   function handleAddToProduct(e: React.MouseEvent) {
     e.preventDefault()
     addProducToCart(props._id)
+  }
+  function handleAddToWishlist(e: React.MouseEvent) {
+     e.preventDefault()
+    addProductToWishlist(props._id)
+  }
+  
+  function handleRemoveFromWishlist(e: React.MouseEvent) {
+     e.preventDefault()
+    removeProductFromWishlist(props._id)
   }
   return (
     <Link to={`/product-detial/` + props._id} className=" bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -33,8 +44,11 @@ export default function Product(props: product) {
         </div>
         
         <button onClick={(e) => handleAddToProduct(e)} className="text-white mt-3 cursor-pointer w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i className='fa-solid fa-plus me-3'></i>Add to cart</button>
-        <button className="text-white mt-3 cursor-pointer w-full bg-cyan-800 hover:bg-cyan-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-700 dark:focus:ring-cyan-900"><i className='fa-solid fa-heart me-3'></i>Add to wishl ist</button>
-  
+
+        <button onClick={products?.some((ele)=> ele._id === props._id) ? (e)=> handleRemoveFromWishlist(e) : (e)=> handleAddToWishlist(e)} className="text-white mt-3 cursor-pointer w-full bg-cyan-800 hover:bg-cyan-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-700 dark:focus:ring-cyan-900">
+          {products?.some((ele)=> ele._id === props._id)? <><i className='fa-solid fa-heart me-3 text-red-700'></i>Remove from Wishlist</>  : <><i className='fa-solid fa-heart me-3'></i>Add to wishlist</> }
+        </button>
+
       </div>
           </Link>
   )

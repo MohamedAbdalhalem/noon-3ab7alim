@@ -20,6 +20,8 @@ import Profile from "./components/Profile/Profile"
 import CartContextProvider from "./context/CartContext"
 import { ToastContainer } from "react-toastify"
 import Cart from "./components/Cart/Cart"
+import Wishlist from "./components/Wishlist/Wishlist"
+import WishlistContextProvider from "./context/WishlistContext"
 
 
 const router = createBrowserRouter([
@@ -31,6 +33,7 @@ const router = createBrowserRouter([
       { path: 'product-detial/:productId', element: <AuthRoute><ProductDeltials /></AuthRoute> },
       {path:'categories/:categoryId',element:<AuthRoute><Category_Products /></AuthRoute>},
       { path: 'brands/:brandId', element: <AuthRoute><Brand_Products /></AuthRoute> },
+      { path: 'wishlist',element: <AuthRoute><Wishlist/></AuthRoute>},
       {path:'cart',element:<AuthRoute><Cart/></AuthRoute>},
       {path:'profile',element:<AuthRoute><Profile/></AuthRoute>},
       {path:'sign-up',element:<UnAuthRoute><SignUp/></UnAuthRoute>},
@@ -50,8 +53,10 @@ export default function App() {
       <QueryClientProvider client={client}>
         <AuthenticationContextProvider>
           <CartContextProvider>
-            <RouterProvider router={router} />
-            </CartContextProvider>
+            <WishlistContextProvider>
+              <RouterProvider router={router} />
+            </WishlistContextProvider>
+          </CartContextProvider>
         </AuthenticationContextProvider>
       </QueryClientProvider>
       <ToastContainer />

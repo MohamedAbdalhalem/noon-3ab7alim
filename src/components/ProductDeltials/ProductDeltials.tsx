@@ -6,9 +6,11 @@ import  StarRatings  from 'react-star-ratings';
 import Slider from 'react-slick';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { WishlistContext } from '../../context/WishlistContext';
 
 
 export default function ProductDeltials() {
+  const {addProductToWishlist,removeProductFromWishlist,products} = useContext(WishlistContext)
   const { addProducToCart } = useContext(CartContext)
     const settings = {
     dots: true,
@@ -20,6 +22,12 @@ export default function ProductDeltials() {
   const { productId } = useParams()
   function handleAddToProduct() {
     addProducToCart(productId)
+  }
+  function handleAddToWishlist() {
+    addProductToWishlist(productId)
+  }
+  function handleRemoveFromWishlist() {
+    removeProductFromWishlist(productId)
   }
     function getProductDetials() {
         return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${productId}`)
@@ -106,7 +114,9 @@ export default function ProductDeltials() {
                     </div>
                     <button onClick={handleAddToProduct} className="text-white mt-3 cursor-pointer w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i className='fa-solid fa-plus me-3'></i>Add to cart</button>
         
-                    <button className="text-white mt-3 cursor-pointer w-full bg-cyan-800 hover:bg-cyan-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-700 dark:focus:ring-cyan-900"><i className='fa-solid fa-heart me-3'></i>Add to cart</button>
+            <button onClick={products?.some(product => productDetials._id === product._id) ? handleRemoveFromWishlist : handleAddToWishlist} className="text-white mt-3 cursor-pointer w-full bg-cyan-800 hover:bg-cyan-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-700 dark:focus:ring-cyan-900">
+              {products?.some(product => productDetials._id === product._id) ? <><i className='fa-solid fa-heart me-3 text-red-700'></i>Remove from Wishlist</> :<><i className='fa-solid fa-heart me-3'></i>Add to Wishlist</> }
+                    </button>
                     
       </div>
     </div>
