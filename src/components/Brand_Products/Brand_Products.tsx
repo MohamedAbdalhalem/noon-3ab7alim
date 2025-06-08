@@ -15,7 +15,6 @@ export default function Brand_Products() {
     queryKey: ['getBrandProducts', brandId],
     queryFn:getBrandProducts
   })
-  console.log(data?.data.data)
   if (isLoading) {
     return <ProductsLoudingScreen count={5} />
   }

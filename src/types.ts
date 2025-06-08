@@ -77,3 +77,25 @@ export type userData = {
     name: string,
     role: string
 }
+
+export type cartContext = {
+    addProducToCart: (productId: string | undefined) => void,
+    numOfCartItems: number,
+    totalCartPrice: number,
+    products: productCart[] | null,
+    removeProductFromCart: (productId: string) => void,
+    clearUserCart: () => void,
+    updateCartProductQuantity : (productId : string,count : number) => void
+}
+
+export type productCart = {
+    count: number
+    price: number
+    product: {
+        imageCover: string,
+        title: string,
+        _id:string
+
+    }
+
+}

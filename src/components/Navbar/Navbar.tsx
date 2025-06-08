@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import {  Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/AuthenticationContext";
+import { CartContext } from "../../context/CartContext";
 
 export default function Navbar() {
   const [isDrak, setIsDark] = useState('Light-mode')
+  const {numOfCartItems} = useContext(CartContext)
   function handleDarkLightMode() {
     
     if (localStorage.getItem('mode') === 'Dark-mode') {
@@ -61,8 +63,8 @@ export default function Navbar() {
                 
                   <div className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                     <button type="button" className="relative inline-flex items-center  text-sm font-medium text-center text-white  rounded-lg ">
-                      <NavLink  to='/cart' className="fa-solid fa-cart-shopping text-gray-900 text-lg dark:text-white"></NavLink>
-                      <div className="absolute  inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-900">20</div>
+                      <NavLink to='/cart' className="fa-solid fa-cart-shopping text-gray-900 text-lg dark:text-white"></NavLink>
+                      {numOfCartItems ? <div className="absolute  inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-900">{ numOfCartItems }</div>:''}
                     </button>
                   </div>
         </li>

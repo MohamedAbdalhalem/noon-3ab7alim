@@ -17,6 +17,10 @@ import ProductDeltials from "./components/ProductDeltials/ProductDeltials"
 import Category_Products from "./components/Category_Products/Category_Products"
 import Brand_Products from "./components/Brand_Products/Brand_Products"
 import Profile from "./components/Profile/Profile"
+import CartContextProvider from "./context/CartContext"
+import { ToastContainer } from "react-toastify"
+import Cart from "./components/Cart/Cart"
+
 
 const router = createBrowserRouter([
   {
@@ -27,6 +31,7 @@ const router = createBrowserRouter([
       { path: 'product-detial/:productId', element: <AuthRoute><ProductDeltials /></AuthRoute> },
       {path:'categories/:categoryId',element:<AuthRoute><Category_Products /></AuthRoute>},
       { path: 'brands/:brandId', element: <AuthRoute><Brand_Products /></AuthRoute> },
+      {path:'cart',element:<AuthRoute><Cart/></AuthRoute>},
       {path:'profile',element:<AuthRoute><Profile/></AuthRoute>},
       {path:'sign-up',element:<UnAuthRoute><SignUp/></UnAuthRoute>},
       { path: 'sign-in', element: <UnAuthRoute><SignIn /></UnAuthRoute> },
@@ -44,10 +49,12 @@ export default function App() {
     <div>
       <QueryClientProvider client={client}>
         <AuthenticationContextProvider>
-          <RouterProvider router={router} />
+          <CartContextProvider>
+            <RouterProvider router={router} />
+            </CartContextProvider>
         </AuthenticationContextProvider>
       </QueryClientProvider>
-      
+      <ToastContainer />
     </div>
   )
 }
