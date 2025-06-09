@@ -1,11 +1,13 @@
-import  { useContext } from 'react'
+import  { useContext, useState } from 'react'
 import { AuthenticationContext } from '../../context/AuthenticationContext'
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import { userData } from '../../types'
 import myimage from '../../assets/WhatsApp Image 2025-06-07 at 18.05.41_24cacda3.jpg'
+import { NavLink, Outlet } from 'react-router-dom'
 
 export default function Profile() {
+    const [isProfile,setIsProfile] = useState(false)
     const { token } = useContext(AuthenticationContext)
     function getUserData() {
         return axios.get('https://ecommerce.routemisr.com/api/v1/auth/verifyToken', {
@@ -37,12 +39,13 @@ export default function Profile() {
     }
     const userData : userData = data?.data.decoded
   return (
-      <div className='p-4 w-1/2 mx-auto'>
+      <div className='p-4 max-w-md mx-auto'>
           <img src={myimage} className='rounded-full mx-auto w-24 h-24 mb-4' alt="" />
-          <h4 className='text-gray-900 mb-4 text-xl text-center mx-auto dark:text-white'><span className='text-blue-700 font-extrabold'>Name : </span>{userData.name}</h4>
+          <h4 className='text-gray-900 mb-4 text-xl text-center dark:text-white'><span className='text-blue-700 font-extrabold'>Name : </span>{userData.name}</h4>
           <h4 className='text-gray-900  mb-4 text-xl text-center dark:text-white'><span className='text-blue-700 font-extrabold'>Role : </span>{userData.role}</h4>
-          <p className='text-gray-900 hover:text-blue-700 dark:text-white text-lg mb-4 cursor-pointer font-extrabold'>Update User Data</p>
-          <p className='text-gray-900 hover:text-blue-700 dark:text-white text-lg mb-4 cursor-pointer font-extrabold'>Update Password</p>
+          
+      <NavLink onClick={() => setIsProfile(!isProfile)} to={isProfile ? '/profile' : '/profile/update-user-data'} className='text-gray-900 block hover:text-blue-700 dark:text-white font-bold  mb-4 cursor-pointer '>Update user Data</NavLink>
+      <Outlet />
     </div >
   )
 }

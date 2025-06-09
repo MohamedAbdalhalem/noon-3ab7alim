@@ -106,3 +106,9 @@ export type wishlistContext = {
     addProductToWishlist: (productId : string | undefined) => void,
     removeProductFromWishlist: (productId : string | undefined) => void,
 }
+
+export type updateUserData = {
+    name: string,
+    email: string,
+    phone: number
+}

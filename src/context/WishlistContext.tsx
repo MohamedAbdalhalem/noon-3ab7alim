@@ -33,7 +33,7 @@ export default function WishlistContextProvider({ children }: contextProviderPro
             }
         }).then(_ => {
             getUserWishCart()
-            toast.success('product added successfully',{ position: 'top-right', autoClose: 2000, pauseOnHover: false, pauseOnFocusLoss: false, style: {width:'250px'}})
+            toast.success('product added to wishlist',{ position: 'top-right', autoClose: 2000, pauseOnHover: false, pauseOnFocusLoss: false, style: {width:'250px'}})
         }
         ).catch(_ => {
             toast.error('Error',{ position: 'top-right', autoClose: 2000, pauseOnHover: false, pauseOnFocusLoss: false, style: {width:'250px'}})
@@ -46,7 +46,7 @@ export default function WishlistContextProvider({ children }: contextProviderPro
             }
         }).then(_ => {
             getUserWishCart()
-            toast.success('product removed successfully',{ position: 'top-right', autoClose: 2000, pauseOnHover: false, pauseOnFocusLoss: false, style: {width:'250px'}})
+            toast.success('product removed to wishlist',{ position: 'top-right', autoClose: 2000, pauseOnHover: false, pauseOnFocusLoss: false, style: {width:'250px'}})
         })
             .catch(_ => {
             toast.error('Error',{ position: 'top-right', autoClose: 2000, pauseOnHover: false, pauseOnFocusLoss: false, style: {width:'250px'}})

@@ -11,11 +11,16 @@ export default function Wishlist() {
     return <ProductsLoudingScreen count={5} />
   }
   return (
-    
-    <div className="grid md:grid-cols-3 lg:grid-cols-5   gap-8">
-      { products.length ? products?.map((pro: product) => (
-                  <Product key={pro._id} {...pro} />
-                )): <img src={img1} className="" alt=""/>}
-    </div>
+    <>
+      {products.length ? (
+        <div className="grid md:grid-cols-3 lg:grid-cols-5   gap-8">
+          {products?.map((pro: product) => (
+            <Product key={pro._id} {...pro} />
+          ))}
+        </div>
+      ) : (
+        <img src={img1} className="mx-auto" alt="" />
+      )}
+    </>
   )
 }

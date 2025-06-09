@@ -9,6 +9,7 @@ body{
 .active{
     font-weight: bolder;
     color: rgba(0, 0, 255,0.7);
+    font-size: 18px;
 }
 
 .slick-prev, .slick-next{

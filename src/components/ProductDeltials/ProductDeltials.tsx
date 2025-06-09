@@ -104,11 +104,11 @@ export default function ProductDeltials() {
                           starSpacing="2px"
                         /><span className='text-gray-900 ms-2 dark:text-white'>{ productDetials.ratingsAverage }</span></p>
                         <div>
-                            {productDetials.ratingsAverage ? <div>
-          <span className="text-2xl mr-2 font-bold text-red-700 line-through">{ productDetials.priceAfterDiscount }</span>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">{ productDetials.price }$</span>
-        </div> : 
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">{ '$'+ productDetials.price }$</p>}
+                            {productDetials.priceAfterDiscount ? <>
+          <span className="text-2xl mr-2 font-bold text-red-700 line-through">{ productDetials.price }</span>
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">{ productDetials.priceAfterDiscount }$</span>
+        </> : 
+          <p className="text-2xl font-bold  text-gray-900 dark:text-white">{ '$'+ productDetials.price }$</p>}
                         </div>
                         
                     </div>

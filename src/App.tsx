@@ -22,6 +22,8 @@ import { ToastContainer } from "react-toastify"
 import Cart from "./components/Cart/Cart"
 import Wishlist from "./components/Wishlist/Wishlist"
 import WishlistContextProvider from "./context/WishlistContext"
+import UpdateUserData from "./components/UpdateUserData/UpdateUserData"
+
 
 
 const router = createBrowserRouter([
@@ -35,7 +37,10 @@ const router = createBrowserRouter([
       { path: 'brands/:brandId', element: <AuthRoute><Brand_Products /></AuthRoute> },
       { path: 'wishlist',element: <AuthRoute><Wishlist/></AuthRoute>},
       {path:'cart',element:<AuthRoute><Cart/></AuthRoute>},
-      {path:'profile',element:<AuthRoute><Profile/></AuthRoute>},
+      {
+        path: 'profile', element: <AuthRoute><Profile /></AuthRoute>, children: [
+        {path:'update-user-data', element:<AuthRoute><UpdateUserData/></AuthRoute>},
+      ]},
       {path:'sign-up',element:<UnAuthRoute><SignUp/></UnAuthRoute>},
       { path: 'sign-in', element: <UnAuthRoute><SignIn /></UnAuthRoute> },
       { path: 'forget-password', element: <UnAuthRoute><ForgetPassword /></UnAuthRoute> },
