@@ -10,7 +10,9 @@ const defaultValue: cartContext = {
   products: null,
   removeProductFromCart: () => { },
   clearUserCart: () => { },
-  updateCartProductQuantity : () => {}
+  updateCartProductQuantity: () => { },
+  cartId: null,
+  clearStates: ()=>{}
 }
 export const CartContext = createContext<cartContext>(defaultValue)
 
@@ -18,6 +20,7 @@ export default function CartContextProvider({ children }: contextProviderProps) 
   const { token } = useContext(AuthenticationContext)
   const [numOfCartItems,setnumOfCartItems] = useState(0)
   const [totalCartPrice, settotalCartPrice] = useState(0)
+  const [cartId,setCartId] = useState<string | null>(null)
   const [products, setProducts] = useState<productCart[] | null>(null)
   function addProducToCart(productId : string | undefined) {
     axios.post('https://ecommerce.routemisr.com/api/v1/cart', {
@@ -41,7 +44,7 @@ export default function CartContextProvider({ children }: contextProviderProps) 
         token,
       }
     })
-    .then(data => {
+      .then(data => {
       setnumOfCartItems(data.data.numOfCartItems)
       settotalCartPrice(data.data.data.totalCartPrice)
       setProducts(data.data.data.products)
@@ -57,6 +60,7 @@ export default function CartContextProvider({ children }: contextProviderProps) 
       }
     })
       .then(data => {
+        setCartId(data.data.cartId)
       setnumOfCartItems(data.data.numOfCartItems)
         settotalCartPrice(data.data.data.totalCartPrice)
         setProducts(data.data.data.products)
@@ -90,6 +94,11 @@ export default function CartContextProvider({ children }: contextProviderProps) 
       setProducts(data.data.data.products)
     })
   }
+  function clearStates() {
+    setnumOfCartItems(0)
+    settotalCartPrice(0)
+    setProducts(null)
+  }
   useEffect(() => {
     if (token)
       getUserCart()
@@ -102,7 +111,9 @@ export default function CartContextProvider({ children }: contextProviderProps) 
       products,
       removeProductFromCart,
       clearUserCart,
-      updateCartProductQuantity
+      updateCartProductQuantity,
+      cartId,
+      clearStates
     }}>
       {children}
     </CartContext.Provider>

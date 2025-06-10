@@ -4,6 +4,7 @@ import axios from "axios"
 import { useContext, useState } from "react"
 import { AuthenticationContext } from "../../context/AuthenticationContext"
 import { useNavigate } from "react-router-dom"
+import { ThreeDots } from "react-loader-spinner"
 
 
 
@@ -11,15 +12,18 @@ export default function UpdateUserData() {
     const { token } = useContext(AuthenticationContext)
     const [isError,setIsError] = useState(false)
     const [isSucces, setIsSucces] = useState(false)
+    const [isLouding,setIsLouding] = useState(false)
     const navigateToSignin = useNavigate()
     const { register, handleSubmit,formState: { errors } } = useForm<updateUserData>()
-    function handleUpdateUserData(data : updateUserData) {
+    function handleUpdateUserData(data: updateUserData) {
+        setIsLouding(true)
         axios.put('https://ecommerce.routemisr.com/api/v1/users/updateMe', data, {
             headers: {
                 token
             }
         }).then(_ => {
             setIsSucces(true)
+            setIsLouding(false)
             localStorage.removeItem('token')
             setTimeout(() => {
                 setIsSucces(false)
@@ -27,6 +31,7 @@ export default function UpdateUserData() {
             }, 3000);
         }).catch(_ => {
             setIsError(true)
+            setIsLouding(false)
             setTimeout(() => {
                 setIsError(false)
             }, 3000);
@@ -78,7 +83,7 @@ export default function UpdateUserData() {
               {errors.phone && <p className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-red-400">{ errors.phone.message }</p>}
           </div>
           <button type="submit" className="text-white cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    {/* {isLouding ? <ThreeDots
+                    {isLouding ? <ThreeDots
                       visible={true}
                       height="30"
                       width="30"
@@ -87,8 +92,7 @@ export default function UpdateUserData() {
                       ariaLabel="three-dots-loading"
                       wrapperStyle={{}}
                       wrapperClass=""
-                      /> : 'Submit'} */}
-              Submit
+                      /> : 'Submit'}
             </button>
     </form>
 

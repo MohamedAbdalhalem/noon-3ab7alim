@@ -1,10 +1,10 @@
 import { useContext, useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import { ThreeDots } from "react-loader-spinner"
+import { Link } from "react-router-dom"
 
 export default function Cart() {
   const { numOfCartItems, totalCartPrice, products,removeProductFromCart,clearUserCart, updateCartProductQuantity } = useContext(CartContext)
-  const [isOpen, setIsOpen] = useState(false)
   const [productId, setProductId] = useState<string | null>(null)
   const [isDeleteLouding,setIsDeleteLouding] = useState(false )
   const [isClearLouding, setIsClearLouding] = useState(false)
@@ -42,7 +42,7 @@ export default function Cart() {
             /> : 'Clear'}
         </button>
       </div>
-<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div className="relative overflow-x-auto max-h-screen  shadow-md sm:rounded-lg">
   <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
@@ -101,7 +101,7 @@ export default function Cart() {
   <div className="relative p-4 w-full z-2 -translate-1/2  max-w-md max-h-full">
     <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
       <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-        <svg onClick={()=>{setIsOpen(!isOpen)}} className="w-3 h-3 cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <svg onClick={()=>{setProductId(null)}} className="w-3 h-3 cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
         </svg>
         <span className="sr-only">Close modal</span>
@@ -123,7 +123,7 @@ export default function Cart() {
             wrapperClass=""
             /> : "Yes, I'm sure"}
         </button>
-        <button onClick={()=>{setIsOpen(!isOpen)}} data-modal-hide="popup-modal" type="button" className="py-2.5 cursor-pointer px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+        <button onClick={()=>{setProductId(null)}} data-modal-hide="popup-modal" type="button" className="py-2.5 cursor-pointer px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
       </div>
     </div>
   </div>
@@ -132,10 +132,9 @@ export default function Cart() {
       </tr>))}
       
     </tbody>
-  </table>
-</div>
-
-
+        </table>  
+      </div>
+      <Link to='/payment'><button type="button" className="text-white cursor-pointer mt-4 w-full font-bold  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Order Now</button></Link>
     </div>
   )
 }

@@ -28,7 +28,8 @@ export type reserPassword = {
 
 export type authContext = {
     token: string | null,
-    setToken: React.Dispatch<React.SetStateAction<string|  null>>
+    setToken: React.Dispatch<React.SetStateAction<string | null>>,
+    userId: string | null
 }
 
 export type contextProviderProps = {
@@ -86,7 +87,9 @@ export type cartContext = {
     products: productCart[] | null,
     removeProductFromCart: (productId: string) => void,
     clearUserCart: () => void,
-    updateCartProductQuantity : (productId : string,count : number) => void
+    updateCartProductQuantity: (productId: string, count: number) => void,
+    cartId: null | string,
+    clearStates: ()=> void
 }
 
 export type productCart = {
@@ -111,4 +114,24 @@ export type updateUserData = {
     name: string,
     email: string,
     phone: number
+}
+
+export type shippingAddress = {
+    details: string,
+    phone: number,
+    city: string
+}
+
+export type orderDetails = {
+    totalOrderPrice: number,
+    paymentMethodType: string,
+    shippingAddress: {
+        details: string,
+        city: string
+    },
+    user: {
+        name: string,
+        email: string,
+        phone: string
+    }
 }

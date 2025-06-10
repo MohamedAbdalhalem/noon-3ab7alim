@@ -20,6 +20,7 @@ export default function Profile() {
         queryKey: ['getUserData'],
         queryFn:getUserData
     })
+  console.log(data?.data.decoded)
     if (isLoading) {
         return (
             <div role="status" className="animate-pulse">

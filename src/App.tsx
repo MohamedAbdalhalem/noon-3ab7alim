@@ -23,6 +23,8 @@ import Cart from "./components/Cart/Cart"
 import Wishlist from "./components/Wishlist/Wishlist"
 import WishlistContextProvider from "./context/WishlistContext"
 import UpdateUserData from "./components/UpdateUserData/UpdateUserData"
+import Orders from "./components/Orders/Orders"
+import Payment from "./components/Payment/Payment"
 
 
 
@@ -36,7 +38,9 @@ const router = createBrowserRouter([
       {path:'categories/:categoryId',element:<AuthRoute><Category_Products /></AuthRoute>},
       { path: 'brands/:brandId', element: <AuthRoute><Brand_Products /></AuthRoute> },
       { path: 'wishlist',element: <AuthRoute><Wishlist/></AuthRoute>},
-      {path:'cart',element:<AuthRoute><Cart/></AuthRoute>},
+      { path: 'cart', element: <AuthRoute><Cart /></AuthRoute> },
+      { path: 'allorders', element: <AuthRoute><Orders /></AuthRoute> },
+      {path: 'payment', element:<AuthRoute><Payment/></AuthRoute>},
       {
         path: 'profile', element: <AuthRoute><Profile /></AuthRoute>, children: [
         {path:'update-user-data', element:<AuthRoute><UpdateUserData/></AuthRoute>},

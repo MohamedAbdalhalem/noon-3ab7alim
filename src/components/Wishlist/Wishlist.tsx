@@ -11,7 +11,7 @@ export default function Wishlist() {
     return <ProductsLoudingScreen count={5} />
   }
   return (
-    <>
+    <div className="p-4">
       {products.length ? (
         <div className="grid md:grid-cols-3 lg:grid-cols-5   gap-8">
           {products?.map((pro: product) => (
@@ -21,6 +21,6 @@ export default function Wishlist() {
       ) : (
         <img src={img1} className="mx-auto" alt="" />
       )}
-    </>
+    </div>
   )
 }
