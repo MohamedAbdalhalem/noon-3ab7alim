@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { orderDetails } from '../../types'
 
 export default function Order_Desgin(props: orderDetails) {
