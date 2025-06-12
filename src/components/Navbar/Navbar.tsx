@@ -19,7 +19,13 @@ export default function Navbar() {
     }
   }
   useEffect(() => {
-    handleDarkLightMode()
+    if (localStorage.getItem('mode') === 'Dark-mode') {
+      document.documentElement.classList.add('dark')
+      setIsDark('Dark-mode')
+    } else {
+      document.documentElement.classList.remove('dark')
+      setIsDark('Light-mode')
+    }
   },[])
   const { token, setToken } = useContext(AuthenticationContext)
   const navigatToSignIn = useNavigate()
